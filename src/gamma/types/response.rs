@@ -746,8 +746,10 @@ pub struct SearchResults {
     pub pagination: Option<Pagination>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, Builder, PartialEq)]
-#[builder(on(String, into))]
+#[serde_as]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize, Builder)]
+#[serde(rename_all = "camelCase")]
+#[non_exhaustive]
 pub struct FeeSchedule {
     pub exponent: u32,
     pub rate: Decimal,

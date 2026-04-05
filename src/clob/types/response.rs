@@ -229,8 +229,6 @@ pub struct MarketResponse {
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnNull")]
     pub tags: Vec<String>,
-    #[serde(default)]
-    pub fee_schedule: Option<FeeSchedule>,
 }
 
 #[non_exhaustive]
@@ -704,15 +702,6 @@ pub struct Page<T> {
     pub limit: u64,
     /// The length of `data`
     pub count: u64,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone, Builder, PartialEq)]
-#[builder(on(String, into))]
-pub struct FeeSchedule {
-    pub exponent: u32,
-    pub rate: Decimal,
-    pub taker_only: bool,
-    pub rebate_rate: Decimal,
 }
 
 /// Response from creating an RFQ request.
