@@ -515,6 +515,7 @@ pub struct Market {
     pub clob_rewards: Option<Vec<ClobReward>>,
     pub category_mailchimp_tag: Option<String>,
     pub subcategory: Option<String>,
+    pub fee_schedule: Option<FeeSchedule>,
 }
 
 /// CLOB rewards configuration for a market.
@@ -743,4 +744,13 @@ pub struct SearchResults {
     pub tags: Option<Vec<SearchTag>>,
     pub profiles: Option<Vec<Profile>>,
     pub pagination: Option<Pagination>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, Builder, PartialEq)]
+#[builder(on(String, into))]
+pub struct FeeSchedule {
+    pub exponent: u32,
+    pub rate: Decimal,
+    pub taker_only: bool,
+    pub rebate_rate: Decimal,
 }
